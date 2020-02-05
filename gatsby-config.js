@@ -1,3 +1,6 @@
+const path = require("path")
+require("dotenv").config({ path: path.resolve(__dirname, ".env.development") })
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -25,6 +28,15 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: "gatsby-source-yt",
+      options: {
+        key: process.env.YT_API_KEY,
+        sort: "date",
+        channelId: "UC5BtIO_vMNvds5sgE-JI6KA",
+        maxResults: "50",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
