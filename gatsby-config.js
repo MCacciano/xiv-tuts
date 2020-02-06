@@ -34,7 +34,6 @@ module.exports = {
       resolve: "gatsby-source-yt",
       options: {
         key: process.env.YT_API_KEY,
-        sort: "date",
         channelId: "UC5BtIO_vMNvds5sgE-JI6KA",
         maxResults: "50",
       },
