@@ -3,9 +3,9 @@ require("dotenv").config({ path: path.resolve(__dirname, ".env.development") })
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `XIV | Tuts`,
+    description: `A Collection of FFXIV tutorial videos all in one place`,
+    author: `Michael Cacciano`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -38,6 +38,7 @@ module.exports = {
         maxResults: "50",
       },
     },
+    { resolve: `gatsby-plugin-styled-components` },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

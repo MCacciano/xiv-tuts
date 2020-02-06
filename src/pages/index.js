@@ -1,19 +1,42 @@
-import React, { useEffect } from "react"
-import { Link, graphql } from "gatsby"
+import React from "react"
+import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import ReactPlayer from "react-player"
+
+import Layout from "../components/layouts/main/layout"
+// import Image from "../components/shared/image"
+import SEO from "../components/shared/seo"
 
 const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <ul>
-        {data.mtq.edges.map(({ node }) => (
-          <li>{node.title}</li>
-        ))}
-      </ul>
+      {data.mtq.edges.map(({ node }, i) => {
+        return (
+          i < 3 && (
+            <div>
+              <h3>{node.title}</h3>
+              {node.items.map(
+                (item, j) =>
+                  j < 3 && (
+                    <div>
+                      <ReactPlayer
+                        url={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`}
+                        playing={false}
+                        controls
+                        config={{
+                          youtube: {
+                            playerVars: { showinfo: 1 },
+                          },
+                        }}
+                      />
+                    </div>
+                  )
+              )}
+            </div>
+          )
+        )
+      })}
     </Layout>
   )
 }
@@ -24,6 +47,13 @@ export const mizzteqVideos = graphql`
       edges {
         node {
           title
+          items {
+            snippet {
+              resourceId {
+                videoId
+              }
+            }
+          }
         }
       }
     }
